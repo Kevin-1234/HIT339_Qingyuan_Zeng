@@ -43,7 +43,7 @@ namespace Movies.Controllers
         }
 
         // GET: CRUDMovies/Create
-        public async Task<IActionResult> Create(string categoryName)
+        public async Task<IActionResult> Create()
         {
             IQueryable<string> categoryQuery = from m in _context.Categories
                                             orderby m.Name
@@ -52,7 +52,7 @@ namespace Movies.Controllers
             var categories = from m in _context.Categories
                              select m;
 
-            var categoriesV = new CategoriesView
+            var categoriesV = new Movie
             {
                 Names = new SelectList(await categoryQuery.Distinct().ToListAsync()),
                 Categories = await categories.ToListAsync()

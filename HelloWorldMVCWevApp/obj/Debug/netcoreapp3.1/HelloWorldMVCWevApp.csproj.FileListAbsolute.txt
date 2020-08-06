@@ -336,3 +336,8 @@ G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloW
 G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\HelloWorldMVCWevApp.dll
 G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\HelloWorldMVCWevApp.pdb
 G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\HelloWorldMVCWevApp.genruntimeconfig.cache
+G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\Razor\Views\Books1\Create.cshtml.g.cs
+G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\Razor\Views\Books1\Delete.cshtml.g.cs
+G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\Razor\Views\Books1\Details.cshtml.g.cs
+G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\Razor\Views\Books1\Edit.cshtml.g.cs
+G:\GoogleDrive\study\2020\Semester 2\HIT 339\GitRepo\HIT339_Qingyuan_Zeng\HelloWorldMVCWevApp\obj\Debug\netcoreapp3.1\Razor\Views\Books1\Index.cshtml.g.cs

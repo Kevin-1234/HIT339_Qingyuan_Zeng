@@ -5,9 +5,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Movies._000Data
 {
+
+    public class Categories
+    {
+        public int CategoriesId { get; set; }
+
+        public string Name { get; set; }
+
+        public int code { get; set; }
+    }
+
     public class Movie
     {
         public int MovieId {get; set;}
@@ -27,14 +38,12 @@ namespace Movies._000Data
         [Required]
         public Categories Category { get; set; }
 
-    }
-    public class Categories
-    {
-        public int CategoriesId { get; set; }
-
-        public string Name { get; set; }
-
-        public int code { get; set; }
+        public List<Categories> Categories { get; set; }
+        public SelectList Names { get; set; }
+        public string CategoryName { get; set; }
     }
 
 }
+    
+
+ 
