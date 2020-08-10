@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj": {}
+    "H:\\GitHub\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj": {}
   },
   "projects": {
-    "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj": {
+    "H:\\GitHub\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj",
+        "projectUniqueName": "H:\\GitHub\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj",
         "projectName": "Movies",
-        "projectPath": "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj",
+        "projectPath": "H:\\GitHub\\HIT339_Qingyuan_Zeng\\Movies\\Movies.csproj",
         "packagesPath": "C:\\Users\\Zengq\\.nuget\\packages\\",
-        "outputPath": "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\Movies\\obj\\",
+        "outputPath": "H:\\GitHub\\HIT339_Qingyuan_Zeng\\Movies\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Zengq\\AppData\\Roaming\\NuGet\\NuGet.Config",

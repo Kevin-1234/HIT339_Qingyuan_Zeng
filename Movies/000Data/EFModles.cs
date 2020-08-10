@@ -16,7 +16,7 @@ namespace Movies._000Data
 
         public string Name { get; set; }
 
-        public int code { get; set; }
+        public int Code { get; set; }
     }
 
     public class Movie
@@ -35,12 +35,9 @@ namespace Movies._000Data
 
         public enum Language { English, Japanese, Chinese } 
 
-        [Required]
+        
         public Categories Category { get; set; }
 
-        public List<Categories> Categories { get; set; }
-        public SelectList Names { get; set; }
-        public string CategoryName { get; set; }
     }
 
 }

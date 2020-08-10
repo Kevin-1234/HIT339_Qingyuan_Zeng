@@ -13,7 +13,7 @@ namespace Movies._000Data
         {
         }
 
-        public DbSet<Movie> Movie { get; set; }
+        public DbSet<Movie> Movies { get; set; }
         public DbSet<Categories> Categories { get; set; }
     }
 }

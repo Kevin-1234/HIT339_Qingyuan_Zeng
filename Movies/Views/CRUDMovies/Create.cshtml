@@ -40,9 +40,13 @@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
-            <select asp-for="CategoryName" asp-items="Model.Names">
-                <option value="">All</option>
-            </select>
+            <select asp-for="MovieId" asp-items="@(new SelectList(@ViewBag.message, "MovieId", "Name"))">
+        <option value="">All</option>
+    </select>
+
+
+
+
             <a asp-controller="Categories" asp-action="Index" type="button" class="btn btn-primary"> Manage Categories </a>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

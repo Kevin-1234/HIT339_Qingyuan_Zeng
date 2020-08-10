@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace Movies.Controllers
         // GET: CRUDMovies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _context.Movies.ToListAsync());
         }
 
         // GET: CRUDMovies/Details/5
@@ -32,7 +33,7 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.MovieId == id);
             if (movie == null)
             {
@@ -43,9 +44,9 @@ namespace Movies.Controllers
         }
 
         // GET: CRUDMovies/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            IQueryable<string> categoryQuery = from m in _context.Categories
+            /*IQueryable<string> categoryQuery = from m in _context.Categories
                                             orderby m.Name
                                             select m.Name;
 
@@ -58,7 +59,17 @@ namespace Movies.Controllers
                 Categories = await categories.ToListAsync()
             };
 
-            return View(categoriesV);
+            return View(categoriesV);*/
+
+
+
+            //How to create a drop down list
+            List<Categories> categoryList = new List<Categories>();
+            categoryList = (from c in _context.Categories select c).ToList();
+            categoryList.Insert(0, new Categories { CategoriesId = 0, Name = "-- Select Movie Name --" });
+            ViewBag.message = categoryList;
+            return View();
+
         }
 
         // POST: CRUDMovies/Create
@@ -85,7 +96,7 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _context.Movies.FindAsync(id);
             if (movie == null)
             {
                 return NotFound();
@@ -136,7 +147,7 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.MovieId == id);
             if (movie == null)
             {
@@ -151,15 +162,15 @@ namespace Movies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
+            var movie = await _context.Movies.FindAsync(id);
+            _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MovieExists(int id)
         {
-            return _context.Movie.Any(e => e.MovieId == id);
+            return _context.Movies.Any(e => e.MovieId == id);
         }
     }
 }

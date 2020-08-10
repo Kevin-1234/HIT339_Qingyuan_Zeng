@@ -26,11 +26,11 @@ namespace Movies.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("code")
-                        .HasColumnType("int");
 
                     b.HasKey("CategoriesId");
 
@@ -44,7 +44,7 @@ namespace Movies.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryCategoriesId")
+                    b.Property<int?>("CategoryCategoriesId")
                         .HasColumnType("int");
 
                     b.Property<string>("Director")
@@ -63,16 +63,14 @@ namespace Movies.Migrations
 
                     b.HasIndex("CategoryCategoriesId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Movies._000Data.Movie", b =>
                 {
                     b.HasOne("Movies._000Data.Categories", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryCategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryCategoriesId");
                 });
 #pragma warning restore 612, 618
         }
