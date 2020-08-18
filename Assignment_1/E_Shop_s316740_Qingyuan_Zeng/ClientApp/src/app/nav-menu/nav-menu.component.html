@@ -19,7 +19,7 @@
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
       >
-        <app-login-menu></app-login-menu>
+        
         <ul class="navbar-nav flex-grow">
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
@@ -41,6 +41,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" routerLinkActive="active" routerLink="add-item">Create Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" routerLinkActive="active" routerLink="identity/register">RegisterNew</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" routerLinkActive="active" routerLink="identity/login">LoginNew</a>
           </li>
 
         </ul>
