@@ -329,11 +329,6 @@ H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.RazorAssemb
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.TagHelpers.input.cache
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.TagHelpers.output.cache
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.RazorCoreGenerate.cache
-H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Create.cshtml.g.cs
-H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Delete.cshtml.g.cs
-H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Details.cshtml.g.cs
-H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Edit.cshtml.g.cs
-H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Index.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\CRUDMovies\Create.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\CRUDMovies\Delete.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\CRUDMovies\Details.cshtml.g.cs
@@ -357,3 +352,9 @@ H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\staticwebassets\Mo
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.dll
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.pdb
 H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Movies.genruntimeconfig.cache
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\CRUDMovies\test.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Create.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Delete.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Details.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Edit.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Movies\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Index.cshtml.g.cs

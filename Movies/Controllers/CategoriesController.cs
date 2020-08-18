@@ -32,14 +32,14 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoriesId == id);
-            if (categories == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(categories);
+            return View(category);
         }
 
         // GET: Categories/Create
@@ -53,15 +53,15 @@ namespace Movies.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoriesId,Name,code")] Categories categories)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Code")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categories);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categories);
+            return View(category);
         }
 
         // GET: Categories/Edit/5
@@ -72,12 +72,12 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories.FindAsync(id);
-            if (categories == null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(categories);
+            return View(category);
         }
 
         // POST: Categories/Edit/5
@@ -85,9 +85,9 @@ namespace Movies.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoriesId,Name,code")] Categories categories)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,Code")] Category category)
         {
-            if (id != categories.CategoriesId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Movies.Controllers
             {
                 try
                 {
-                    _context.Update(categories);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriesExists(categories.CategoriesId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -112,7 +112,7 @@ namespace Movies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categories);
+            return View(category);
         }
 
         // GET: Categories/Delete/5
@@ -123,14 +123,14 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoriesId == id);
-            if (categories == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(categories);
+            return View(category);
         }
 
         // POST: Categories/Delete/5
@@ -138,15 +138,15 @@ namespace Movies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categories = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(categories);
+            var category = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriesExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.Categories.Any(e => e.CategoriesId == id);
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

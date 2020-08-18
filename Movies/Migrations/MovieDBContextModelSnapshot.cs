@@ -19,20 +19,20 @@ namespace Movies.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Movies._000Data.Categories", b =>
+            modelBuilder.Entity("Movies._000Data.Category", b =>
                 {
-                    b.Property<int>("CategoriesId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Code")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoriesId");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -44,7 +44,7 @@ namespace Movies.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryCategoriesId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Director")
@@ -61,16 +61,46 @@ namespace Movies.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.HasIndex("CategoryCategoriesId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Movies");
                 });
 
+            modelBuilder.Entity("Movies._000Data.MovieCategoryViewModel", b =>
+                {
+                    b.Property<int>("MovieCategoryViewModelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Director")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MovieCategoryViewModelId");
+
+                    b.ToTable("MovieCategoryViewModel");
+                });
+
             modelBuilder.Entity("Movies._000Data.Movie", b =>
                 {
-                    b.HasOne("Movies._000Data.Categories", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryCategoriesId");
+                    b.HasOne("Movies._000Data.Category", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,15 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Movies._000Data
 {
 
-    public class Categories
-    {
-        public int CategoriesId { get; set; }
-
-        public string Name { get; set; }
-
-        public int Code { get; set; }
-    }
-
+ 
     public class Movie
     {
         public int MovieId {get; set;}
@@ -35,8 +27,8 @@ namespace Movies._000Data
 
         public enum Language { English, Japanese, Chinese } 
 
+        public Nullable<int> CategoryId { get; set; }
         
-        public Categories Category { get; set; }
 
     }
 

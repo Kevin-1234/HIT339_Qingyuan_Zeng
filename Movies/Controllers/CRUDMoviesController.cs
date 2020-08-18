@@ -20,10 +20,39 @@ namespace Movies.Controllers
         }
 
         // GET: CRUDMovies
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movies.ToListAsync());
         }
+        public IActionResult test() 
+     
+        {
+            var movieCategoryList = (from movie in _context.Movies
+                                     join category in _context.Categories on movie.CategoryId equals category.CategoryId
+                                     select new { movie.Name, movie.ReleaseDate, movie.Director, movie.Email, category.CategoryName, category.Code }).ToList();
+            var categoryViewModelList = new List<MovieCategoryViewModel>();
+            foreach (var item in movieCategoryList)
+            {
+                categoryViewModelList.Add(new MovieCategoryViewModel()
+                {
+
+                    Code = item.Code,
+                    CategoryName = item.CategoryName,
+                    Name = item.Name,
+                    ReleaseDate = item.ReleaseDate,
+                    Director = item.Director,
+                    Email = item.Email
+
+
+                }
+                    );
+            };
+
+            return View(categoryViewModelList);
+
+        }
+
 
         // GET: CRUDMovies/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -64,10 +93,34 @@ namespace Movies.Controllers
 
 
             //How to create a drop down list
-            List<Categories> categoryList = new List<Categories>();
+
+            /*List<Categories> categoryList = new List<Categories>();
             categoryList = (from c in _context.Categories select c).ToList();
             categoryList.Insert(0, new Categories { CategoriesId = 0, Name = "-- Select Movie Name --" });
             ViewBag.message = categoryList;
+            return View();*/
+
+            /*var movieCategoryList = (from movie in _context.Movies join category in _context.Categories on movie.CategoryId equals category.CategoryId 
+                                     select new { movie.Name, movie.ReleaseDate, movie.Director, movie.Email, category.CategoryName, category.Code}).ToList();
+            var categoryViewModelList = new List<MovieCategoryViewModel>();
+            foreach(var item in movieCategoryList)
+            {
+                categoryViewModelList.Add(new MovieCategoryViewModel()
+                {
+                    
+                    Code = item.Code,
+                    CategoryName = item.CategoryName,
+                    Name = item.Name,
+                    ReleaseDate = item.ReleaseDate,
+                    Director = item.Director,
+                    Email = item.Email
+                    
+
+                }
+                    );
+            };
+
+            return View(categoryViewModelList);*/
             return View();
 
         }

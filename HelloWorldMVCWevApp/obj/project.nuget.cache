@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QQ20sF8t0tQ+fIYTgsDRWvgMfSIdYfHWRZBnC83FkK5PdT7TvadM/Sv/ul1UttMWyEyB1G9pCIP2+NuQBAdL3A==",
+  "dgSpecHash": "xDGpicUcXV0DNjPhy1u0AmvMBdAnYnz54yfC2Vs1CoTYWaYYTZM24oZOkBbq25lwSaH2Ht0geIFcoe1ewSCT7w==",
   "success": true,
-  "projectFilePath": "G:\\GoogleDrive\\study\\2020\\Semester 2\\HIT 339\\GitRepo\\HIT339_Qingyuan_Zeng\\HelloWorldMVCWevApp\\HelloWorldMVCWevApp.csproj",
+  "projectFilePath": "H:\\GitHub\\HIT339_Qingyuan_Zeng\\HelloWorldMVCWevApp\\HelloWorldMVCWevApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zengq\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Zengq\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
