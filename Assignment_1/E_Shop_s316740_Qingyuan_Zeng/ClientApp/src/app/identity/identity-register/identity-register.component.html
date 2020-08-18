@@ -53,6 +53,7 @@
               </span>
             </span>
             <!-- notice this error is checked at the form level not control level-->
+            <!-- this validation need to be checked only once -->
             <span *ngIf="registerationForm.hasError('passwordsNotMatched') && confirmPassword.valid" class="error-block">
               Password not matched!
             </span>
