@@ -38,8 +38,8 @@
         <input type="text" class="form-control" ngModel name="itemPrice">
       </div>
       <div class="form-group col-12">
-        <!-- [disabled]="!Form.valid" When form is not valid, disable the save button-->
-        <button type="submit" class="btn btn-primary mr-2">save</button>
+        <!--  When form is not valid, disable the save button-->
+        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">save</button>
         <button type="reset" class="btn btn-primary">Cancel</button>
       </div>
 
