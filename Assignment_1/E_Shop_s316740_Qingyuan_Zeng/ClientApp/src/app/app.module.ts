@@ -20,6 +20,7 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { IdentityRegisterComponent } from './identity/identity-register/identity-register.component';
 import { IdentityLoginComponent } from './identity/identity-login/identity-login.component';
+import { UserService } from './services/user.service';
 const appRoutes: Routes = [
   //assign a path to the component 
   { path: 'add-item', component: AddItemComponent },
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     
-    EshoppingService
+    EshoppingService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
