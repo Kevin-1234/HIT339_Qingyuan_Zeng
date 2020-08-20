@@ -1,0 +1,9 @@
+
+/* when a input box is invalid, this class gets automatically generated*/
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.error-block {
+   color: red;
+}
