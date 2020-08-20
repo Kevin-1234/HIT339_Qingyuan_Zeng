@@ -18,12 +18,46 @@
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="add-item">Create Item</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="identity/register">RegisterNew</a>
+      <!-- if the token doesn't exists, the user does not log in, show 'register and login' -->
+      <li *ngIf="!loggingStatus()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="identity/register">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="identity/login">LoginNew</a>
+      <li *ngIf="!loggingStatus()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="identity/login">Login</a>
       </li>
+      <!-- if the token exists, the user logged in, show 'logout' -->
+      <div *ngIf="loggingStatus()" class="dropdown mr-5" dropdown>
+        <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+          Welcome
+        </a>
+
+        <!-- *dropdownMenu is responsible for hide and display of dropdownToggle -->
+        <div class="dropdown-menu" *dropdownMenu>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-tachometer-alt"></i>
+            View Dashboard
+          </a>
+          <a href="#" class="dropdown-item">
+            <!-- the i tags and classes are used to display icons -->
+            <i class="fas fa-user-circle"></i>
+            My Profile
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-key"></i>
+            View Dashboard
+          </a>
+          <a (click)='onLogout()' class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i>
+            View Dashboard
+          </a>
+
+        </div>
+
+
+
+        <!-- <a class="nav-link" (click)="onLogout()" routerLinkActive="active" routerLink="/">Logout</a> -->
+
+      </div>
 
     </ul>
 

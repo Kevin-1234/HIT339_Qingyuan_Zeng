@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // to submit the form and get the data of the form
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+// ngx-bootstrap for applying bootstrap features without using jQuery
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -17,6 +19,8 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { IdentityRegisterComponent } from './identity/identity-register/identity-register.component';
 import { IdentityLoginComponent } from './identity/identity-login/identity-login.component';
 import { UserService } from './services/user.service';
+import { AlertifyService } from './services/alertify.service';
+import { AuthenticationService } from './services/authentication.service';
 const appRoutes: Routes = [
   //assign a path to the component
   { path: 'add-item', component: AddItemComponent },
@@ -54,12 +58,16 @@ const appRoutes: Routes = [
     //let the application know the routes exist
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
 
     EshoppingService,
-    UserService
+    UserService,
+    AlertifyService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

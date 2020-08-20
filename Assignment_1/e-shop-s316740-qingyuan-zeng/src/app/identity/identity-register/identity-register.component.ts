@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Local } from 'protractor/built/driverProviders';
 import { UserService } from '../../services/user.service';
 import { UserAccount } from '../../model/account';
-import * as alertyfy from 'alertifyjs';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-identity-register',
@@ -18,7 +18,11 @@ export class IdentityRegisterComponent implements OnInit {
   formSubmitted: boolean;
   // FormBuilder is a helper class provided by Angular that makes it easier to build reactive forms
   // inject user service where methods related to users are defind (eg, addAccount())
-  constructor(private formBuilder: FormBuilder, private userService: UserService ) { }
+  // inject alertify services to create pop up notifacation boxes
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
+    private  alertifySerives: AlertifyService
+    ) { }
 
   ngOnInit() {
 
@@ -84,6 +88,11 @@ export class IdentityRegisterComponent implements OnInit {
       // reset the form when user clicks the submit button
       this.registrationForm.reset();
       this.formSubmitted = false;
+      // pop up congrats message when the form submitted is valid
+      this.alertifySerives.success('Congradulations, The registration is successfully completed!')
+    }else{
+      this.alertifySerives.error('Please fill up all the required fields before submitting!')
+
     }
 
   }
