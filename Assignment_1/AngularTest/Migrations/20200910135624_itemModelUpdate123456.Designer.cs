@@ -3,14 +3,16 @@ using AngularTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngularTest.Migrations
 {
     [DbContext(typeof(eShopDBContext))]
-    partial class eShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200910135624_itemModelUpdate123456")]
+    partial class itemModelUpdate123456
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

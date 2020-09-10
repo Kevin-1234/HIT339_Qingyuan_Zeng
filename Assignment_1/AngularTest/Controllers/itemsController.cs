@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AngularTest.Data;
 using AngularTest.Models;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace AngularTest.Controllers
 {
@@ -81,9 +83,11 @@ namespace AngularTest.Controllers
         public async Task<ActionResult<item>> Postitem(item item)
         {
             _context.items.Add(item);
+            JsonConvert.SerializeObject(item.shoppingCartItems);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getitem", new { id = item.itemId }, item);
+            return item;
+           // return CreatedAtAction("Getitem", new { id = item.itemId }, item);
         }
 
         // DELETE: api/items/5

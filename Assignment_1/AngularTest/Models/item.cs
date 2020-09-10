@@ -19,6 +19,8 @@ namespace AngularTest.Models
         public string itemImage { get; set; }
 
         public string userEmail { get; set; }
+        
+        public ICollection<shoppingCartItem> shoppingCartItems { get; set; }
 
 
     }

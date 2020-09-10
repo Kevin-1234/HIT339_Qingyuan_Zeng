@@ -16,5 +16,7 @@ namespace AngularTest.Data
 
         public DbSet<item> items { get; set; }
         public DbSet<shoppingCart> shoppingCarts { get; set; }
+
+        public DbSet<shoppingCartItem> shoppingCartItems { get; set; }
     }
 }
