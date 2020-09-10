@@ -26,6 +26,7 @@ export class IdentityDetailComponent implements OnInit {
     this.registrationForm.reset();
     this.currentUser = JSON.parse(localStorage.getItem('token'));
     
+    
   }
   // apply field validators
   createRegistrationForm() {

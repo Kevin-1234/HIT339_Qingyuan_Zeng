@@ -34,6 +34,7 @@ export class ItemListComponent implements OnInit {
     
     this.currentUser = JSON.parse(localStorage.getItem('token'));
     console.log("url: " + this.router.url);
+
     // if the page url is "selling-items", SellRent = 2, which is the value of the SellRent property of selling items.
     // That means selling items will be displayed in this page
     //if (this.route.snapshot.url.toString() === "selling-items") {

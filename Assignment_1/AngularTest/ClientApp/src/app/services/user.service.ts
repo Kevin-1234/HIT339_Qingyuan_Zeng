@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserAccount } from '../model/account';
+import { EshoppingService } from './eshopping.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,7 @@ export class UserService {
       // if no account exists in local storage, add the new account from the form
       accounts = [account];
     }
+    
     localStorage.setItem('Accounts', JSON.stringify(accounts));
 
   }
