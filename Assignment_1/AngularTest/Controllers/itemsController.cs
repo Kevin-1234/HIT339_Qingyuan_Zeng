@@ -72,7 +72,7 @@ namespace AngularTest.Controllers
                     throw;
                 }
             }
-
+           // return (IActionResult)item;
             return NoContent();
         }
 
@@ -83,7 +83,7 @@ namespace AngularTest.Controllers
         public async Task<ActionResult<item>> Postitem(item item)
         {
             _context.items.Add(item);
-            JsonConvert.SerializeObject(item.shoppingCartItems);
+            //JsonConvert.SerializeObject(item.shoppingCartItems);
             await _context.SaveChangesAsync();
 
             return item;

@@ -20,7 +20,7 @@ namespace AngularTest.Models
 
         public string userEmail { get; set; }
         
-        public ICollection<shoppingCartItem> shoppingCartItems { get; set; }
+        
 
 
     }

@@ -44,8 +44,7 @@ namespace AngularTest.Migrations
 
                     b.ToTable("items");
                 });
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
             modelBuilder.Entity("AngularTest.Models.shoppingCart", b =>
                 {
@@ -98,10 +97,8 @@ namespace AngularTest.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
-=======
->>>>>>> parent of 413d449... backup before adding shopping cart
-=======
->>>>>>> parent of 413d449... backup before adding shopping cart
+
+
 #pragma warning restore 612, 618
         }
     }
