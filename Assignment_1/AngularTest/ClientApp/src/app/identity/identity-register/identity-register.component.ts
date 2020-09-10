@@ -4,7 +4,6 @@ import { Local } from 'protractor/built/driverProviders';
 import { UserService } from '../../services/user.service';
 import { UserAccount } from '../../model/account';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { EshoppingService } from '../../services/eshopping.service';
 
 @Component({
   selector: 'app-identity-register',
@@ -22,14 +21,13 @@ export class IdentityRegisterComponent implements OnInit {
   // inject alertify services to create pop up notifacation boxes
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
-    private eshoppingServices: EshoppingService,
     private  alertifySerives: AlertifyService
     ) { }
 
   ngOnInit() {
 
     this.createRegistrationForm();
-    
+
   }
 
   // apply field validators
@@ -87,7 +85,6 @@ export class IdentityRegisterComponent implements OnInit {
 
 
       this.userService.addAccount(this.accountData());
-      this.eshoppingServices.addShoppingCart(this.accountData().email);
       // reset the form when user clicks the submit button
       this.registrationForm.reset();
       this.formSubmitted = false;
@@ -112,6 +109,5 @@ export class IdentityRegisterComponent implements OnInit {
     }
 
   }
-
 
 }

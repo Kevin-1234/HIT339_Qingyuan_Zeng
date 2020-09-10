@@ -15,8 +15,11 @@ namespace AngularTest.Data
         }
 
         public DbSet<item> items { get; set; }
+<<<<<<< HEAD
         public DbSet<shoppingCart> shoppingCarts { get; set; }
 
         public DbSet<shoppingCartItem> shoppingCartItems { get; set; }
+=======
+>>>>>>> parent of 413d449... backup before adding shopping cart
     }
 }

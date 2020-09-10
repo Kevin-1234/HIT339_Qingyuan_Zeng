@@ -6,8 +6,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Item } from '../model/item';
 import { AddItem } from '../model/addItem';
-import { UserAccount } from '../model/account';
-import { ShoppingCart } from '../model/shoppingCart';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +15,6 @@ export class EshoppingService {
   postId: number;
   item: Item;
   itemArray: Array<Item>;
-  currentShoppingCart: ShoppingCart;
   constructor( private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   getItem(id: number) {
@@ -114,51 +111,5 @@ export class EshoppingService {
 
 
 
-  }
-
-  
-  addShoppingCart(userEmail: string) {
-    var cart = {
-      "userEmail": userEmail,
-      "items": null
-    }
-
-    const headers = { 'content-type': 'application/json' }
-    const body = JSON.stringify(cart);
-    console.log("body: " + body);
-    this.http.post<ShoppingCart>(this.baseUrl + 'api/shoppingCarts', body, { 'headers': headers }).subscribe({
-      error: error => console.error('There was an error!', error)
-    })
-
-  }
-
-  putShoppingCart( item: Item) {
-    var cart = {
-      "userEmail": currentUser.email,
-      "items": [{
-        "itemId": item.itemId,
-        "itemName": item.itemName,
-        "itemType": item.itemType,
-        "itemPrice": item.itemPrice,
-        "itemImage": item.itemImage
-        }    
-      ]
-
-    } 
-    console.log("item: " + JSON.stringify(cart));
-    const headers = { 'content-type': 'application/json' }
-    const body = JSON.stringify(cart);
-    // "<Item>" type is needed
-    this.http.put<ShoppingCart>(this.baseUrl + 'api/shoppingCarts/' + currentUser.email, body, { 'headers': headers }).subscribe({
-      error: error => console.error('There was an error!', error)
-    })
-
-  }
-
-  getShoppingCarts(): Observable<ShoppingCart[]> {
-    
-
-   return this.http.get<ShoppingCart[]>('https://localhost:44322/api/shoppingCarts/');
-    
   }
 }

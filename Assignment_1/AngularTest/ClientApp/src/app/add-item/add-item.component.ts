@@ -84,7 +84,6 @@ export class AddItemComponent implements OnInit {
     if (this.addItemForm.valid) {
 
       this.eshooping.addItem(this.itemData());
-      
       console.log(this.itemData());
       //this.userService.addAccount(this.accountData());
       // reset the form when user clicks the submit button

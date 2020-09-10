@@ -14,7 +14,7 @@ namespace AngularTest.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -44,6 +44,7 @@ namespace AngularTest.Migrations
 
                     b.ToTable("items");
                 });
+<<<<<<< HEAD
 
             modelBuilder.Entity("AngularTest.Models.shoppingCart", b =>
                 {
@@ -96,6 +97,8 @@ namespace AngularTest.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+=======
+>>>>>>> parent of 413d449... backup before adding shopping cart
 #pragma warning restore 612, 618
         }
     }
