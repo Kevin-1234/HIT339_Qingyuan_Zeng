@@ -14,7 +14,7 @@ namespace AngularTest.Models
 
         public int itemPrice { get; set; }
 
-        public int itemType { get; set; }
+        public string itemType { get; set; }
 
         public string itemImage { get; set; }
 

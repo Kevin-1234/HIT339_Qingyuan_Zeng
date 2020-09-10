@@ -40,7 +40,7 @@ const appRoutes: Routes = [
 
   { path: 'identity/login', component: IdentityLoginComponent },
   { path: 'identity/register', component: IdentityRegisterComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: ItemListComponent, pathMatch: 'full' },
     // when wrong url is entered, jump back to the "selling items" page
   { path: '**', component: ItemListComponent },
 

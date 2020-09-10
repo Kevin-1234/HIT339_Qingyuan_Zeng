@@ -117,7 +117,7 @@ export class ItemDetailComponent implements OnInit {
       // the values of each property is from the get methods defined above
       itemId: this.item.itemId,
       itemName: this.itemName.value,
-      itemType: +this.itemType.value,
+      itemType: this.itemType.value,
       itemPrice: +this.itemPrice.value,
       itemImage: this.itemImage.value,
       userEmail: this.currentUser.email
