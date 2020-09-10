@@ -5,6 +5,6 @@ export interface Item {
   itemPrice: number;
   itemImage: string;
   itemType: number;
- 
+  userEmail: string;
 
 }

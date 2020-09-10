@@ -5,6 +5,8 @@ import { AlertifyService } from '../services/alertify.service';
 import { EshoppingService } from '../services/eshopping.service';
 import { Item } from '../model/item';
 import { AddItem } from '../model/addItem';
+import { UserService } from '../services/user.service';
+import { UserAccount } from '../model/account';
 
 @Component({
   selector: 'app-add-item',
@@ -13,10 +15,11 @@ import { AddItem } from '../model/addItem';
 })
 export class AddItemComponent implements OnInit {
   item: AddItem;
-  
+  currentUser: UserAccount;
  
   //inject FormBuilder to build the form for adding items
   constructor(
+    private userService: UserService,
     private eshooping: EshoppingService,
     private alertifyServices: AlertifyService,
     private router: Router,
@@ -26,6 +29,7 @@ export class AddItemComponent implements OnInit {
   // auto loaded when page starts
   ngOnInit() {
     this.createAddItemForm();
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
   }
 
   // apply field validators
@@ -67,8 +71,8 @@ export class AddItemComponent implements OnInit {
       itemName: this.itemName.value,
       itemType: +this.itemType.value,
       itemPrice: +this.itemPrice.value,
-      itemImage: this.itemImage.value
-
+      itemImage: this.itemImage.value,
+      userEmail: this.currentUser.email
     }
 
   }

@@ -6,6 +6,8 @@ import { EshoppingService } from '../services/eshopping.service';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { AddItem } from '../model/addItem';
 import { AlertifyService } from '../services/alertify.service';
+import { UserService } from '../services/user.service';
+import { UserAccount } from '../model/account';
 
 @Component({
   selector: 'app-item-detail',
@@ -18,20 +20,22 @@ export class ItemDetailComponent implements OnInit {
   
   items: Array<Item>;
   item: Item;
-  addItem: Item;
+  updateItem: Item;
+  currentUser: UserAccount;
   
   public itemId: number;
   // inject activatedRoute and Router
   // using activated route to ensure right the right nav link is highlighted
   // using router to navigate the click event binded with the next page button
   constructor(
+    private userService: UserService,
     private eshoppingServices: EshoppingService,
     private sharingData: SharingDataService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private alertifyServices: AlertifyService) { }
-  addItemForm: FormGroup;
+  updateItemForm: FormGroup;
   formSubmitted: boolean;
   ngOnInit() {
     
@@ -39,7 +43,7 @@ export class ItemDetailComponent implements OnInit {
     //the route metod returns a string, conversion is needed to make it calculable
     this.itemId = Number(this.route.snapshot.params['id']);
     this.createAddItemForm();
-    
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
     
     //get updated route value within the same component
     this.route.params.subscribe(
@@ -83,7 +87,7 @@ export class ItemDetailComponent implements OnInit {
 
   // apply field validators
   createAddItemForm() {
-    this.addItemForm = this.formBuilder.group(
+    this.updateItemForm = this.formBuilder.group(
       {
         itemName: [null, Validators.required],
         itemType: [null, Validators.required],
@@ -96,42 +100,42 @@ export class ItemDetailComponent implements OnInit {
   }
 
   get itemName() {
-    return this.addItemForm.get('itemName') as FormControl;
+    return this.updateItemForm.get('itemName') as FormControl;
   }
   get itemType() {
-    return this.addItemForm.get('itemType') as FormControl;
+    return this.updateItemForm.get('itemType') as FormControl;
   }
   get itemPrice() {
-    return this.addItemForm.get('itemPrice') as FormControl;
+    return this.updateItemForm.get('itemPrice') as FormControl;
   }
   get itemImage() {
-    return this.addItemForm.get('itemImage') as FormControl;
+    return this.updateItemForm.get('itemImage') as FormControl;
   }
  
   itemData(): Item {
-    return this.addItem = {
+    return this.updateItem = {
       // the values of each property is from the get methods defined above
       itemId: this.item.itemId,
       itemName: this.itemName.value,
       itemType: +this.itemType.value,
       itemPrice: +this.itemPrice.value,
-      itemImage: this.itemImage.value
-      
+      itemImage: this.itemImage.value,
+      userEmail: this.currentUser.email
     }
 
   }
 
   onSubmit() {
-    console.log(this.addItemForm.value);
+    console.log(this.updateItemForm.value);
     this.formSubmitted = true;
     // if the form is valid, then submit
-    if (this.addItemForm.valid) {
+    if (this.updateItemForm.valid) {
 
       this.eshoppingServices.putItem(this.itemData());
       
       //this.userService.addAccount(this.accountData());
       // reset the form when user clicks the submit button
-      this.addItemForm.reset();
+      this.updateItemForm.reset();
       this.formSubmitted = false;
       // pop up congrats message when the form submitted is valid
       this.alertifyServices.success('Congradulations, The registration is successfully completed!')

@@ -5,5 +5,5 @@ export interface AddItem {
   itemPrice: number;
   itemImage: string;
   itemType: number;
-
+  userEmail: string;
 }
