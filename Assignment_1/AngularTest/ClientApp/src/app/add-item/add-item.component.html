@@ -1,0 +1,48 @@
+<p>
+  add-item works!
+  <!-- using event binding to bind 'click' event with 'onback' function-->
+  <button (click)="onBack()" class="btn btn-primary">Back</button>
+
+ </p>
+
+<div class="card">
+  <div class="card-header">
+    Add New Item
+  </div>
+  <div class="card-body">
+    <!--[formGroup]="addItemForm" create the form decleared in the ts file-->
+    <form (ngSubmit)='onSubmit()' [formGroup]="addItemForm">
+            <div class="form-group col-12">
+              <label for="name">Item Name</label>
+              <!-- define nameCheck variable for the error block to determine if the name input is valid -->
+              <input type="text" class="form-control" formControlName="itemName">
+              <span *ngIf="!itemName.valid && (itemName.touched || formSubmitted)" class="error-block">
+                <!-- if no name is entered-->
+                <span *ngIf="itemName.errors.required">
+                  Please provide name
+                </span>
+              <!-- if name length is smaller than 5 -->
+               
+              </span>
+
+            </div>
+            <div class="form-group col-12">
+              <label for="name">Item Type</label>
+              <input type="text" class="form-control" formControlName="itemType">
+            </div>
+            <div class="form-group col-12">
+              <label for="name">Item Price</label>
+              <input type="text" class="form-control" formControlName="itemPrice">
+            </div>
+            <div class="form-group col-12">
+              <label for="name">Item Image</label>
+              <input type="text" class="form-control" formControlName="itemImage">
+            </div>
+            <div class="form-group col-12">
+              <!--  When form is not valid, disable the save button-->
+              <button  type="submit" class="btn btn-primary mr-2">save</button>
+              <button type="reset" class="btn btn-primary">Cancel</button>
+            </div>
+    </form>
+  </div>
+</div>

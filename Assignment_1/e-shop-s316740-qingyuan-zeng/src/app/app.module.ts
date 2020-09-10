@@ -7,6 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 // ngx-bootstrap for applying bootstrap features without using jQuery
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// ngx module for creating tabs
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -60,7 +62,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [
 

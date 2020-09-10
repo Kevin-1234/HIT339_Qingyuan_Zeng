@@ -1,0 +1,18 @@
+
+<div class="card">
+  <!-- passing item id into the url using string interporlation-->
+  <a routerLink="/item-detail/{{item.Id}}">
+    <!-- pass image url using string interporlation-->
+    <!-- if the item doesn't have image property, show the defult image -->
+    <img *ngIf="item.Image" class="cardImage" src="assets/images/{{item.Image}}.jpg">
+    <img *ngIf="!item.Image" class="cardImage" src="assets/images/BlackHole.jpg">
+  </a>
+    <div class="card-body p-2">
+    <!-- use string interporlation by applying double curly braces  -->
+    <h1>{{item.Type}}</h1>
+    <h2>{{item.Price}}</h2>
+    <h3>{{item.Name}}</h3>
+  </div>
+</div>      
+
+

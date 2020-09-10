@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="MyItems">My Items</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/">Buy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="add-item">Create Item</a>
+      </li>
+      <!-- if the token doesn't exists, the user does not log in, show 'register and login' -->
+      <li *ngIf="!loggingStatus()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="identity/register">Register</a>
+      </li>
+      <li *ngIf="!loggingStatus()" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="identity/login">Login</a>
+      </li>
+      <!-- if the token exists, the user logged in, show 'logout' -->
+      <div *ngIf="loggingStatus()" class="dropdown mr-5" dropdown>
+        <a href="#" class="dropdown-toggle text-dark" dropdownToggle (click)="false">
+          Welcome {{currentUser.userName}}
+        </a>
+
+        <!-- *dropdownMenu is responsible for hide and display of dropdownToggle -->
+        <div class="dropdown-menu" *dropdownMenu>
+          <a routerLink="account-detail" class="dropdown-item">
+            <i class="fas fa-tachometer-alt"></i>
+            View Dashboard
+          </a>
+          <a routerLink="account-detail" class="dropdown-item">
+            <!-- the i tags and classes are used to display icons -->
+            <i class="fas fa-user-circle"></i>
+            My Profile
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-key"></i>
+            View Dashboard
+          </a>
+          <a (click)='onLogout()' class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+
+        </div>
+
+
+
+        <!-- <a class="nav-link" (click)="onLogout()" routerLinkActive="active" routerLink="/">Logout</a> -->
+
+      </div>
+
+    </ul>
+
+  </div>
+</nav>
