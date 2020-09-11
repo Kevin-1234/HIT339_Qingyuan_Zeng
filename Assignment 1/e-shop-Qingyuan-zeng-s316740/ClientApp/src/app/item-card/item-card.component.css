@@ -1,0 +1,15 @@
+
+.cardImage {
+
+  height: 200px;
+  width: 100%;
+
+}
+.card {
+transition-duration:0.3s;
+
+}
+.card:hover {
+  background-color: grey;
+
+}

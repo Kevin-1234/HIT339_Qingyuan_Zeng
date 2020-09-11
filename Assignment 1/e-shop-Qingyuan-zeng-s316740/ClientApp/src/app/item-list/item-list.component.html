@@ -1,0 +1,10 @@
+<h1 class="mx-auto">{{pageTitle}}</h1>
+<br><br>
+<div class="row">
+  
+  <div *ngFor="let item of items" class="shadow-lg col-sm-4 p-3">
+    <!-- using property binding [item]="item" to share data between components -->
+    <app-item-card [item]="item"></app-item-card>
+    
+  </div> 
+</div>
