@@ -30,9 +30,10 @@ const appRoutes: Routes = [
   //assign a path to the component
   { path: 'add-item', component: AddItemComponent },
   { path: 'account-detail', component: IdentityDetailComponent },
-
+  
   { path: 'MyItems', component: ItemListComponent },
   { path: 'items-for-sale', component: ItemListComponent },
+  { path: 'Shopping-cart', component: ItemListComponent },
   // '/:id' allows passing a value into the url
   { path: 'item-detail/:id', component: ItemDetailComponent },
 

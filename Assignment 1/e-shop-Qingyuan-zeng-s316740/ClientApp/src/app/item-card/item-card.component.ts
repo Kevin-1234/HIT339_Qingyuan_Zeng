@@ -51,4 +51,20 @@ export class ItemCardComponent {
       }
     )   
   }
+  // add items to the shopping cart
+  addToShoppingCart() {
+    let scitems = [];
+    if (localStorage.getItem('items')) {
+      // get existed items
+      scitems = JSON.parse(localStorage.getItem('items'));
+      // if the item existed pop up error message
+      if ((scitems.find(i => i.itemId === this.item.itemId)) && (scitems.find(i => i.userEmail === this.currentUser.email ))) {
+        this.alertifyService.error("This item is already existed in the cart!")
+      } else {
+
+        this.eshoppingServices.addShoppingCartItem(this.item, this.currentUser);
+        this.alertifyService.success("Item has been added to your cart!")
+      }     
+    }   
+  }
 }

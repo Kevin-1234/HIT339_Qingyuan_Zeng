@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Item } from '../model/item';
 import { AddItem } from '../model/addItem';
 import { ShoppingCart } from '../model/shoppingCart';
+import { UserAccount } from '../model/account';
 
 @Injectable({
   providedIn: 'root'
@@ -130,4 +131,20 @@ export class EshoppingService {
 
 
   }
+
+  // add item to shpping cart
+  addShoppingCartItem(item: Item, currentUser: UserAccount) {
+    item.userEmail = currentUser.email;
+    let items = [];
+    if (localStorage.getItem('items')) {
+      items = JSON.parse(localStorage.getItem('items'));
+      items = [item, ...items];
+    } else {
+      items = [item];
+    }
+    localStorage.setItem('items', JSON.stringify(items));
+
+  }
+
+  
 }

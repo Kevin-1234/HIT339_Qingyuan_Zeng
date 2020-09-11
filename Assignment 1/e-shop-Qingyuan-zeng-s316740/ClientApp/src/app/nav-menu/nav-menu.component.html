@@ -8,9 +8,12 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="MyItems">Home <span class="sr-only">(current)</span></a>
       </li>
- 
+
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="items-for-sale">Buy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="Shopping-cart">My Shopping Cart</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="add-item">Create Item</a>
@@ -30,13 +33,13 @@
 
         <!-- *dropdownMenu is responsible for hide and display of dropdownToggle -->
         <div class="dropdown-menu" *dropdownMenu>
-          
+
           <a routerLink="account-detail" class="dropdown-item">
             <!-- the i tags and classes are used to display icons -->
             <i class="fas fa-user-circle"></i>
             My Profile
           </a>
-          
+
           <a (click)='onLogout()' class="dropdown-item">
             <i class="fas fa-sign-out-alt"></i>
             Logout

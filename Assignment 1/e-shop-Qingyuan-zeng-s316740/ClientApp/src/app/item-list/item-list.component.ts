@@ -19,6 +19,7 @@ export class ItemListComponent implements OnInit {
   //SellRent = 1;
   pageTitle: string;
   items: Array<Item>;
+
   currentUser: UserAccount;
 
   // inject eshopping service to fetch data
@@ -31,10 +32,10 @@ export class ItemListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+
     this.currentUser = JSON.parse(localStorage.getItem('token'));
     console.log("url: " + this.router.url);
- 
+
 
     // if url is equal to the url of buying items page, show all the items from all users that are for sale
     //else show the items of the current user that are to be sold 
@@ -51,24 +52,34 @@ export class ItemListComponent implements OnInit {
       )
 
 
-    } else {
-      this.pageTitle = "Items to be sold"
-      this.eshoppingService.getAllItems().subscribe(
-        data => {
-          this.items = data.filter(i => i.userEmail === this.currentUser.email);
-          console.log(data);
+    } else if (this.router.url === "/Shopping-cart") {
+      console.log("haha");
+      let scitems = [];
+      if (localStorage.getItem('items')) {
+        console.log("haha");
+        scitems = JSON.parse(localStorage.getItem('items'));
+        console.log("haha" + scitems);
+        this.items = scitems.filter(i => i.userEmail === this.currentUser.email);       
+      
+      } else {
+        this.pageTitle = "Items to be sold"
+        this.eshoppingService.getAllItems().subscribe(
+          data => {
+            this.items = data.filter(i => i.userEmail === this.currentUser.email);
+            console.log(data);
 
 
-        }, error => {
-          console.log('httperror:');
-          console.log(error);
-        }
-      )
+          }, error => {
+            console.log('httperror:');
+            console.log(error);
+          }
+        )
+
+      }
+
+
 
     }
-    
-   
-    
   }
 
   addItem() {
