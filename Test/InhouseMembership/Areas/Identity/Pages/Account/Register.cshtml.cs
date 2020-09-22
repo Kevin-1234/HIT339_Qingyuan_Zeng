@@ -24,7 +24,7 @@ namespace InhouseMembership.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
@@ -88,9 +88,26 @@ namespace InhouseMembership.Areas.Identity.Pages.Account
                 
                 if (result.Succeeded)
                 {
+                    
                     _logger.LogInformation("User created a new account with password.");
-                    var role = _roleManager.FindByIdAsync(Input.Name).Result;
-                    await _userManager.AddToRoleAsync(user, "Coach");
+
+                    
+                    
+                    var currentUser = await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User));
+                    // if the current user is admin, give him the options to create admin, coach and member
+                    if (_userManager.GetRolesAsync(currentUser).Result.FirstOrDefault() == "Admin")
+                    {
+
+                        var role = _roleManager.FindByIdAsync(Input.Name).Result;
+                        await _userManager.AddToRoleAsync(user, role.Name);
+                    }
+                    // otherwise, this user can only register as a member
+                    else {
+                        await _userManager.AddToRoleAsync(user, "Member");
+                    }
+                    
+                    
+                    
 
 
 

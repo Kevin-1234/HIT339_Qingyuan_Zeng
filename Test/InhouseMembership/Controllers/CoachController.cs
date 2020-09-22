@@ -11,23 +11,22 @@ namespace InhouseMembership.Controllers
     public class CoachController : Controller
 
     {
-        //UserManager<IdentityUser> _userManager;
-        //public CoachController(UserManager<IdentityUser> userManager)
-        //{
-        //    _userManager = userManager;
-        //}
+        UserManager<IdentityUser> _userManager;
+        public CoachController(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
         [Authorize(Roles = "Coach")]
-        //public async Task<ActionResult> Index(
-        public ActionResult Index()
+        public async Task<ActionResult> Index() 
         {
            
-            //var users = _userManager.Users.ToList();
+            var users = _userManager.Users.ToList();
           
-            //var coaches = await _userManager.GetUsersInRoleAsync("Coach");
+            var coaches = await _userManager.GetUsersInRoleAsync("Coach");
            
                 
-            //return View(coaches);
-            return View();
+            return View(coaches);
+            
         }
 
 
