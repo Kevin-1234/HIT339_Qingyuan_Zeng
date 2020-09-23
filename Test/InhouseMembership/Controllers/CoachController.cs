@@ -16,7 +16,7 @@ namespace InhouseMembership.Controllers
         {
             _userManager = userManager;
         }
-        [Authorize(Roles = "Admin")]
+        
         public async Task<ActionResult> Index() 
         {
             // get a list of users
@@ -29,7 +29,22 @@ namespace InhouseMembership.Controllers
             
         }
 
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var coach = await _userManager.FindByIdAsync(id);
+            //.FirstOrDefaultAsync(m => m.ScheduleId == id);
+            if (coach == null)
+            {
+                return NotFound();
+            }
+
+            return View(coach);
+        }
 
     }
 }

@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @UserManager.FindByIdAsync(item.CoachId).Result.Email;
+                @UserManager.FindByIdAsync(item.CoachId).Result.Email
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |

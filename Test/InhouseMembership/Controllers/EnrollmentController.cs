@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InhouseMembership.Data;
 using InhouseMembership.Models;
+using Newtonsoft.Json;
 
 namespace InhouseMembership.Controllers
 {
@@ -44,26 +45,49 @@ namespace InhouseMembership.Controllers
         }
 
         // GET: Enrollment/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
         {
-            return View();
+            Console.WriteLine("haha");
+            //TempData["mydata"] = JsonConvert.DeserializeObject<Enrollment>(TempData["mydata"]);
+            var data = TempData["mydata"] as Dictionary<string, string>;
+            //ViewData["mydata"] = JsonConvert.DeserializeObject(TempData["mydata"]);
+            
+            enrollment.EnrollmentId = data["EnrollmentId"];
+            enrollment.ScheduleId = data["ScheduleId"];
+            enrollment.MemberId = data["MemberId"];
+            _context.Add(enrollment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Schedule");
         }
 
         // POST: Enrollment/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(enrollment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(enrollment);
-        }
+
+        //public async Task<IActionResult> Create([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
+        //{
+            //if (ModelState.IsValid)
+            //{
+            //Enrollment data = TempData["mydata"] as Enrollment;
+            //TempData["mydata"] = JsonConvert.DeserializeObject<Enrollment>((string)TempData["mydata"]);
+            //var data = TempData["mydata"];
+            //Console.WriteLine("data: " + data);
+
+            //enrollment.EnrollmentId = "12312354645";
+            //enrollment.ScheduleId = "12312";
+            //enrollment.MemberId = "1231443";
+
+            
+            //    _context.Add(enrollment);
+            //    await _context.SaveChangesAsync();
+                
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(enrollment);
+        //}
 
         // GET: Enrollment/Edit/5
         public async Task<IActionResult> Edit(string id)

@@ -234,3 +234,4 @@ H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Ra
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\RegisterUser.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Member\Index.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Member\Details.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Coach\Details.cshtml.g.cs

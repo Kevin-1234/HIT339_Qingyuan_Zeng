@@ -9,6 +9,7 @@ using InhouseMembership.Data;
 using InhouseMembership.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace InhouseMembership.Controllers
 {
@@ -24,9 +25,18 @@ namespace InhouseMembership.Controllers
             _userManager = userManager;
         }
 
+
+        public void OnGet()
+        {
+
+            ViewData["coaches"] = _userManager.GetUsersInRoleAsync("Coach"); 
+
+            
+        }
         // GET: Schedule
         public async Task<IActionResult> Index()
         {
+           
 
             var scheduleList = await _context.Schedules.ToListAsync();
             // ensure the coach logged in can only see the schedule that is hosted by himself
@@ -62,10 +72,73 @@ namespace InhouseMembership.Controllers
             return View(schedule);
         }
 
+        // redirect to the coach detail page
+        public IActionResult CoachDetails(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+           
+            return Redirect("../../Coach/Details/" + id);
+        }
+
+
+
+        
+        public IActionResult CreateEnrollment(string id)
+        {
+
+
+            //enrollment.EnrollmentId = "53534534";
+            //enrollment.MemberId = _userManager.GetUserAsync(User).Result.Id;
+            //enrollment.ScheduleId = "321312";
+            //_context.Add(enrollment);
+            //await _context.SaveChangesAsync();
+
+            //return RedirectToAction(nameof(Index));
+
+            //var data = new Enrollment()
+            //{
+            //    EnrollmentId = "111111",
+            //    ScheduleId = id,
+            //    MemberId = _userManager.GetUserAsync(User).Result.Id
+
+            //};
+
+
+
+
+            // generate random enrollment Id
+            Random rnd = new Random();
+            int randomNumber = rnd.Next();
+            string strRandomNumber = randomNumber.ToString();
+            // the data will be passed to the create action in 'Enrollment' controller using TempData to create a new enrollment
+            var data = new Dictionary<string, string>() {         
+            {"EnrollmentId", strRandomNumber},
+            {"ScheduleId", id},
+            {"MemberId", _userManager.GetUserAsync(User).Result.Id},
+            };
+            TempData["mydata"] = data;
+            //TempData["mydata"] = JsonConvert.SerializeObject(data);
+            return RedirectToAction("Create", "Enrollment");
+
+
+        }
+
+
+
+      
+
+
+
+
         // GET: Schedule/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            // pass a list of coaches to ViewData, which can be used to Create page for choach and schedule matching
+            ViewData["coaches"] = _userManager.GetUsersInRoleAsync("Coach").Result.ToList();
             return View();
         }
 
@@ -80,9 +153,11 @@ namespace InhouseMembership.Controllers
             if (ModelState.IsValid)
             {
 
-                schedule.CoachId = _userManager.GetUserId(HttpContext.User);
-                Console.WriteLine("This is C#: " + _userManager.GetUserId(HttpContext.User));
-                Console.WriteLine("This is C#: " + schedule.CoachId);
+                // generate random Schedule Id
+                Random rnd = new Random();
+                int randomNumber = rnd.Next();
+                string strRandomNumber = randomNumber.ToString();
+                schedule.ScheduleId = strRandomNumber;
                 _context.Add(schedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

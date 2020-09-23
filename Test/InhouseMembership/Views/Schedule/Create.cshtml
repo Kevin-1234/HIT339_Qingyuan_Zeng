@@ -1,8 +1,10 @@
 ﻿@model InhouseMembership.Models.Schedule
-
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var coaches = (List<IdentityUser>)ViewData["coaches"];
 }
 
 <h1>Create</h1>
@@ -13,14 +15,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
             <div class="form-group">
-                <label asp-for="ScheduleId" class="control-label"></label>
-                <input asp-for="ScheduleId" class="form-control" />
-                <span asp-validation-for="ScheduleId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CoachId" class="control-label"></label>
-                <input asp-for="CoachId" class="form-control" />
+                <label asp-for="CoachId" class="control-label">Coach</label>
+                <select asp-for="CoachId" class="form-control" asp-items='new SelectList(coaches, "Id", "UserName")'></select>
                 <span asp-validation-for="CoachId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,6 +36,7 @@
                 <input asp-for="Location" class="form-control" />
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
