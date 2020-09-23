@@ -16,12 +16,12 @@ namespace InhouseMembership.Controllers
         {
             _userManager = userManager;
         }
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index() 
         {
-           
+            // get a list of users
             var users = _userManager.Users.ToList();
-          
+            // get a list of Admins
             var coaches = await _userManager.GetUsersInRoleAsync("Coach");
            
                 

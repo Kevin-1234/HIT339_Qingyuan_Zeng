@@ -93,9 +93,9 @@ namespace InhouseMembership.Areas.Identity.Pages.Account
 
                     
                     
-                    var currentUser = await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User));
+                    //var currentUser = await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User));
                     // if the current user is admin, give him the options to create admin, coach and member
-                    if (_userManager.GetRolesAsync(currentUser).Result.FirstOrDefault() == "Admin")
+                    if (User.IsInRole("Admin"))
                     {
 
                         var role = _roleManager.FindByIdAsync(Input.Name).Result;

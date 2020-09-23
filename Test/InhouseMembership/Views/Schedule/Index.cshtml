@@ -1,21 +1,26 @@
 ﻿@model IEnumerable<InhouseMembership.Models.Schedule>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Schedules</h1>
+<!-- If the current user is admin, show create new schedule -->
+@if (User.IsInRole("Admin"))
+{
+    <h3>
+        <a asp-action="Create">New Schedule</a>
+    </h3>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CoachId)
-            </th>
+          
             <th>
                 @Html.DisplayNameFor(model => model.EventName)
             </th>
@@ -25,15 +30,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Location)
             </th>
-            <th></th>
+            <th>
+                Coach Name
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoachId)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.EventName)
             </td>
@@ -44,11 +50,14 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
+                @UserManager.FindByIdAsync(item.CoachId).Result.Email;
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ScheduleId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ScheduleId">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

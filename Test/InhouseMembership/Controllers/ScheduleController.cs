@@ -17,7 +17,7 @@ namespace InhouseMembership.Controllers
         private readonly ApplicationDbContext _context;
         UserManager<IdentityUser> _userManager;
 
-
+        
         public ScheduleController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -27,13 +27,24 @@ namespace InhouseMembership.Controllers
         // GET: Schedule
         public async Task<IActionResult> Index()
         {
-            
+
             var scheduleList = await _context.Schedules.ToListAsync();
             // ensure the coach logged in can only see the schedule that is hosted by himself
-            return View(scheduleList.Where(s => s.CoachId.Equals(_userManager.GetUserId(HttpContext.User))));
+            if (User.IsInRole("Coach"))
+            {
+                return View(scheduleList.Where(s => s.CoachId.Equals(_userManager.GetUserId(HttpContext.User))));
+            }
+            // members and admins can see all schedules
+            else {
+                return View(scheduleList);
+            }
+            
+           
+            
         }
 
         // GET: Schedule/Details/5
+        
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
