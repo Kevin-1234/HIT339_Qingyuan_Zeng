@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace InhouseMembership.Models
 
             public string CoachId { get; set; }
 
-            public ICollection<Enrollment> Enrollments { get; set; }
+            //public ICollection<IdentityUser> Members { get; set; }
 
             [Required(ErrorMessage = "Please Enter the Event Name")]
             [Display(Name = "Event Name")]
