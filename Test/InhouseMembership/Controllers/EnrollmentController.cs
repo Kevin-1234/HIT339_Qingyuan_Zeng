@@ -47,7 +47,7 @@ namespace InhouseMembership.Controllers
         }
 
         // GET: Enrollment/Create
-        public async Task<IActionResult> CreateAsync([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
+        public async Task<IActionResult> Create([Bind("EnrollmentId,ScheduleId,MemberId")] Enrollment enrollment)
         {
             Console.WriteLine("haha");
             //TempData["mydata"] = JsonConvert.DeserializeObject<Enrollment>(TempData["mydata"]);

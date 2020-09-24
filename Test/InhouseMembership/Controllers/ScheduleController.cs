@@ -182,6 +182,9 @@ namespace InhouseMembership.Controllers
             return View(schedule);
         }
 
+
+
+
         // POST: Schedule/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -216,6 +219,109 @@ namespace InhouseMembership.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(schedule);
+        }
+
+        // update enrolled members in a schedule
+
+        //public async Task<IActionResult> Enroll(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Schedule schedule = new Schedule();
+        //    Console.WriteLine("id: " + id);
+        //    schedule = _context.Schedules.Find(id);
+            
+           
+            //Console.WriteLine("current User: " + _userManager.GetUserAsync(User).Result.GetType());
+            //List<IdentityUser> icollection = new List<IdentityUser>();
+            //icollection.Add(_userManager.GetUserAsync(User).Result);
+            //IdentityUser newUser = new IdentityUser();
+            //    newUser.Email = "testMember@live.com";
+            //    newUser.Id = "12421hkj";
+            //    newUser.UserName = "Kevin999";
+            //newUser = _userManager.GetUserAsync(User).Result;
+
+
+            //List<IdentityUser> newList = new List<IdentityUser>();
+            //newList = schedule.Members;
+
+            //foreach (IdentityUser memeber in newList)
+            //{
+            //    if (memeber.UserName == null)
+            //    {
+            //        Console.WriteLine("value is null");
+
+
+            //    }
+            //    else {
+            //        Console.WriteLine("schedule: " + memeber.UserName);
+            //    }
+                
+               
+
+            //}
+            
+            //newList.Add(_userManager.GetUserAsync(User).Result);
+            //_userManager.Users.Where(u => u.ScheduleId)
+            //schedule.Members = newList;
+
+            //schedule.CoachId = schedule.CoachId;
+            //schedule.EventDate = schedule.EventDate;
+           // schedule.EventName = "Darwin888";
+            //schedule.Location = schedule.Location;
+            //schedule.ScheduleId = schedule.ScheduleId;
+            //schedule.Members.Append( _userManager.GetUserAsync(User).Result);
+            //Console.WriteLine("schedule: " + schedule.Members);
+            //Console.WriteLine(newUser.UserName);
+            //Console.WriteLine(newUser.Email);
+            //Console.WriteLine(newUser.Id);
+            //schedule.Members.Add(newUser);
+            //Console.WriteLine("schedule: " + schedule.Members);
+
+
+            //try
+            //{
+            //    _context.Update(schedule);
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ScheduleExists(schedule.ScheduleId))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+            //return RedirectToAction(nameof(Index));
+
+
+
+            //var data = TempData["mydata"] as Dictionary<string, string>;
+            ////ViewData["mydata"] = JsonConvert.DeserializeObject(TempData["mydata"]);
+
+            //enrollment.EnrollmentId = data["EnrollmentId"];
+            //enrollment.ScheduleId = data["ScheduleId"];
+            //enrollment.MemberId = data["MemberId"];
+            //_context.Add(enrollment);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction("Index", "Schedule");
+        //}
+
+        public async Task<IActionResult> GetEnroll()
+        {
+            Schedule schedule = new Schedule();
+            schedule = _context.Schedules.Find("506102797");
+            Console.WriteLine("schedule: " + schedule.ScheduleId);
+            Console.WriteLine("schedule: " + schedule.EventName);
+            Console.WriteLine("schedule: " + schedule.Members);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Schedule/Delete/5
