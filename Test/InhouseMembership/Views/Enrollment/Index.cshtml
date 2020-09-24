@@ -1,5 +1,7 @@
-﻿@model IEnumerable<InhouseMembership.Models.Enrollment>
+﻿@using Microsoft.AspNetCore.Identity
+@model Tuple<IEnumerable<InhouseMembership.Models.Schedule>, IEnumerable<InhouseMembership.Models.Enrollment>>
 
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,29 +15,41 @@
 <table class="table">
     <thead>
         <tr>
+            <!-- show the schedules that will be hosted by current coach logged in  -->
             <th>
-                @Html.DisplayNameFor(model => model.MemberId)
+                Schedule Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ScheduleId)
+                Enrolled Members
             </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item1 in Model.Item1)
+        {
+        
+
+            @foreach (var item2 in Model.Item2)
+            {
+                @if (item1.CoachId.Equals(UserManager.GetUserId(User)))
+                {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MemberId)
+                @Html.DisplayFor(modelItem => item1.EventName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ScheduleId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EnrollmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnrollmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnrollmentId">Delete</a>
+                @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item2.MemberId).Result.UserName)
             </td>
         </tr>
-}
+                }
+
+            }
+
+
+
+
+
+        
+        }
     </tbody>
 </table>

@@ -23,7 +23,9 @@ namespace InhouseMembership.Controllers
         // GET: Enrollment
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Enrollments.ToListAsync());
+            var tupleModel = new Tuple<IEnumerable<Schedule>, IEnumerable<Enrollment>>(await _context.Schedules.ToListAsync(), await _context.Enrollments.ToListAsync());
+            return View(tupleModel);
+            //return View(await _context.Enrollments.ToListAsync());
         }
 
         // GET: Enrollment/Details/5
