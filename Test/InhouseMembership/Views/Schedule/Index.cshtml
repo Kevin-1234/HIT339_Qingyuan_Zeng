@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<InhouseMembership.Models.Schedule>
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ 
+    DateTime currentTime = DateTime.Now;
+}
 
 @{
     ViewData["Title"] = "Index";
@@ -43,14 +47,28 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EventName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
+            <!-- if the event time is before current time, the event is over and can no longer be enrolled -->
+            @if (item.EventDate <= currentTime)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventDate)
+                    (This event has ended!)
+                </td>
+
+            }
+            else { 
+            
+                <td>             
+                    @Html.DisplayFor(modelItem => item.EventDate)
+                </td>
+            
+            }
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @UserManager.FindByIdAsync(item.CoachId).Result.Email
+                @UserManager.FindByIdAsync(item.CoachId).Result.UserName
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |

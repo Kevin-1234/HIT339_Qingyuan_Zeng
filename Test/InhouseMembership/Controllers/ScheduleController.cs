@@ -16,10 +16,10 @@ namespace InhouseMembership.Controllers
     public class ScheduleController : Controller
     {
         private readonly ApplicationDbContext _context;
-        UserManager<IdentityUser> _userManager;
+        UserManager<ApplicationUser> _userManager;
 
         
-        public ScheduleController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public ScheduleController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -39,6 +39,26 @@ namespace InhouseMembership.Controllers
            
 
             var scheduleList = await _context.Schedules.ToListAsync();
+            DateTime currentTime = DateTime.Now;
+            Console.WriteLine("currentTime" + currentTime);
+           
+            foreach (var item in scheduleList)
+            {
+
+                Console.WriteLine("EventDate: " + item.EventDate);
+                //Console.WriteLine("event time: " + item.EventDate < currentTime);
+                if (item.EventDate <= currentTime)
+                {
+                    Console.WriteLine("Date is not valid");
+                }
+                else {
+
+                    Console.WriteLine("Date is valid");
+
+                }
+                
+            }
+           
             // ensure the coach logged in can only see the schedule that is hosted by himself
             if (User.IsInRole("Coach"))
             {
@@ -48,7 +68,7 @@ namespace InhouseMembership.Controllers
             else {
                 return View(scheduleList);
             }
-            
+           
            
             
         }

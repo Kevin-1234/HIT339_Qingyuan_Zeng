@@ -9,5 +9,6 @@ namespace InhouseMembership.Models
     public class ApplicationUser : IdentityUser
     {
         public List<Enrollment> Enrollments { get; set; }
+        
     }
 }

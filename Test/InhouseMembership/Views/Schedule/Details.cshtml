@@ -1,19 +1,21 @@
 ﻿@model InhouseMembership.Models.Schedule
 @using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    DateTime currentTime = DateTime.Now;
+}
 <h1>Details</h1>
 
 <div>
     <h4>Schedule</h4>
     <hr />
     <dl class="row">
-        
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EventName)
         </dt>
@@ -35,6 +37,7 @@
         <dt class="col-sm-2">
             Coach Name
         </dt>
+
         <!-- get the coach name by passing coach id into UserManager -->
         <dd class="col-sm-10">
             <a asp-action="CoachDetails" asp-route-id="@Model.CoachId">@Html.DisplayFor(model => UserManager.FindByIdAsync(model.CoachId).Result.Email)</a>
@@ -42,7 +45,15 @@
     </dl>
 </div>
 <div>
-    <a asp-action="CreateEnrollment" asp-route-id="@Model.ScheduleId">Enroll</a>
+     
+    @if (Model.EventDate <= currentTime)
+    {
+    <h3>(Event has ended!)</h3>
+    }
+    else { 
+    <a asp-action="CreateEnrollment" asp-route-id="@Model.ScheduleId"><h3>Enroll</h3></a>
+    }
+
     <a asp-action="Edit" asp-route-id="@Model.ScheduleId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

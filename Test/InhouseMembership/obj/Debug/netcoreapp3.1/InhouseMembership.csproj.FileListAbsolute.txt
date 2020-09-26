@@ -235,3 +235,9 @@ H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Ra
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Member\Index.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Member\Details.cshtml.g.cs
 H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\Coach\Details.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\Create.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\Delete.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\Details.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\Edit.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\Index.cshtml.g.cs
+H:\GitHub\HIT339_Qingyuan_Zeng\Test\InhouseMembership\obj\Debug\netcoreapp3.1\Razor\Views\CoachProfile\NoProfile.cshtml.g.cs

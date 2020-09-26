@@ -16,6 +16,6 @@ namespace InhouseMembership.Models
 
         public Schedule Schedule { get; set; }
 
-        public IdentityUser Member { get; set; }
+        public ApplicationUser Member { get; set; }
     }
 }

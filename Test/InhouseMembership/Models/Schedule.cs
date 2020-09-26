@@ -28,7 +28,7 @@ namespace InhouseMembership.Models
             [Required(ErrorMessage = "Please Enter the Event Date")]
             [DataType(DataType.DateTime)]
             [Display(Name = "Event Date")]
-            public string EventDate { get; set; }
+            public DateTime EventDate { get; set; }
 
             [Required(ErrorMessage = "Please Enter the Event Location")]
             [Display(Name = "Event Location")]

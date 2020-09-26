@@ -1,10 +1,10 @@
 ﻿@model InhouseMembership.Models.Schedule
 @using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var coaches = (List<IdentityUser>)ViewData["coaches"];
+    var coaches = (List<ApplicationUser>)ViewData["coaches"];
 }
 
 <h1>Create</h1>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InhouseMembership.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,8 @@ namespace InhouseMembership.Controllers
 {
     public class MemberController : Controller
     {
-        UserManager<IdentityUser> _userManager;
-        public MemberController(UserManager<IdentityUser> userManager)
+        UserManager<ApplicationUser> _userManager;
+        public MemberController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -33,7 +34,7 @@ namespace InhouseMembership.Controllers
             return View(new IdentityRole());
         }
         [HttpPost]
-        public async Task<IActionResult> Create(IdentityUser user)
+        public async Task<IActionResult> Create(ApplicationUser user)
         {
             await _userManager.CreateAsync(user);
             return RedirectToAction("Index");

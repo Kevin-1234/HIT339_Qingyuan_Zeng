@@ -8,24 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using InhouseMembership.Data;
 using InhouseMembership.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace InhouseMembership.Controllers
 {
     public class EnrollmentController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public EnrollmentController(ApplicationDbContext context)
+        UserManager<ApplicationUser> _userManager;
+         
+        public EnrollmentController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
+            _userManager = userManager;
+     
             _context = context;
         }
 
         // GET: Enrollment
         public async Task<IActionResult> Index()
         {
-            //var tupleModel = new Tuple<IEnumerable<Schedule>, IEnumerable<Enrollment>>(await _context.Schedules.ToListAsync(), await _context.Enrollments.ToListAsync());
-            //return View(tupleModel);
-            return View(await _context.Enrollments.ToListAsync());
+            var tupleModel = new Tuple<IEnumerable<Schedule>, IEnumerable<Enrollment>>(await _context.Schedules.ToListAsync(), await _context.Enrollments.ToListAsync());
+            return View(tupleModel);
+            //return View(await _context.Enrollments.ToListAsync());
         }
 
         // GET: Enrollment/Details/5
@@ -57,6 +61,8 @@ namespace InhouseMembership.Controllers
             enrollment.EnrollmentId = data["EnrollmentId"];
             enrollment.ScheduleId = data["ScheduleId"];
             enrollment.MemberId = data["MemberId"];
+          
+          
             _context.Add(enrollment);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Schedule");
