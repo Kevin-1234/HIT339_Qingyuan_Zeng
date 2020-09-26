@@ -18,7 +18,7 @@ namespace InhouseMembership.Models
 
             public string CoachId { get; set; }
 
-           
+            public List<Enrollment> Enrollments { get; set; }
 
             [Required(ErrorMessage = "Please Enter the Event Name")]
             [Display(Name = "Event Name")]

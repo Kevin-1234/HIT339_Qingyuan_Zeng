@@ -118,6 +118,7 @@ namespace InhouseMembership.Controllers
             {"EnrollmentId", strRandomNumber},
             {"ScheduleId", id},
             {"MemberId", _userManager.GetUserAsync(User).Result.Id},
+            //{"Enrollments", _userManager.GetUserAsync(User).Result},
             };
             TempData["mydata"] = data;
             //TempData["mydata"] = JsonConvert.SerializeObject(data);
@@ -313,17 +314,7 @@ namespace InhouseMembership.Controllers
             //return RedirectToAction("Index", "Schedule");
         //}
 
-        public async Task<IActionResult> GetEnroll()
-        {
-            Schedule schedule = new Schedule();
-            schedule = _context.Schedules.Find("506102797");
-            Console.WriteLine("schedule: " + schedule.ScheduleId);
-            Console.WriteLine("schedule: " + schedule.EventName);
-            Console.WriteLine("schedule: " + schedule.Members);
-
-            return RedirectToAction(nameof(Index));
-        }
-
+       
         // GET: Schedule/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)

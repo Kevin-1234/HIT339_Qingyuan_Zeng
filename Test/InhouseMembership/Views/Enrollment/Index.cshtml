@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model Tuple<IEnumerable<InhouseMembership.Models.Schedule>, IEnumerable<InhouseMembership.Models.Enrollment>>
+﻿
+@model IEnumerable<InhouseMembership.Models.Enrollment>
+<!--Tuple<IEnumerable<InhouseMembership.Models.Schedule>, IEnumerable<InhouseMembership.Models.Enrollment>>-->
 
-@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,39 +17,24 @@
         <tr>
             <!-- show the schedules that will be hosted by current coach logged in  -->
             <th>
-                Schedule Name
+                @Html.DisplayNameFor(model => model.Schedule.EventName)
             </th>
             <th>
-                Enrolled Members
+                @Html.DisplayNameFor(model => model.Member.UserName)
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item1 in Model.Item1)
+        @foreach (var item in Model)
         {
-        
-
-            @foreach (var item2 in Model.Item2)
-            {
-                @if (item1.CoachId.Equals(UserManager.GetUserId(User)))
-                {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item1.EventName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item2.MemberId).Result.UserName)
-            </td>
-        </tr>
-                }
-
-            }
-
-
-
-
-
-        
-        }
-    </tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule.EventName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.UserName)
+                </td>
+            </tr>
+       }
+        </tbody>
 </table>
