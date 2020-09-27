@@ -13,9 +13,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -28,23 +25,62 @@
             </th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item1 in Model.Item1)
-        {
-            @foreach (var item2 in Model.Item2)
+    @if (User.IsInRole("Admin"))
+    {
+        <tbody>
+            @foreach (var item1 in Model.Item1)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item1.EventName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item2.MemberId).Result.UserName)
-                    </td>
-                </tr>
+
+                @foreach (var item2 in Model.Item2)
+                {
+                    @if (item2.ScheduleId == item1.ScheduleId)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item1.EventName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item2.MemberId).Result.UserName)
+                            </td>
+                        </tr>
+                    }
+
+                }
+            }
+        </tbody>
+
+    }
+    else if (User.IsInRole("Coach"))
+    { 
+    
+        <tbody>
+            @foreach (var item1 in Model.Item1)
+            {
+                @if (item1.CoachId == UserManager.GetUserId(User))
+                {
+                    @foreach (var item2 in Model.Item2)
+                    {
+                        @if (item2.ScheduleId == item1.ScheduleId)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item1.EventName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => UserManager.FindByIdAsync(item2.MemberId).Result.UserName)
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                }
+
+
             }
 
-        }
 
-
-    </tbody>
+        </tbody>
+    }
+    
 </table>

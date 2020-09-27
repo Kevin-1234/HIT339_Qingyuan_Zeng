@@ -33,28 +33,75 @@ namespace InhouseMembership.Controllers
         }
 
         // GET: CoachProfile/Details/5
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int? id)
         {
-            // show the profile of the coach that currently logged in  
-            var CoachId = _userManager.GetUserId(User);
 
-            var coachProfile = await _context.CoachProfiles
-                .Include(c => c.Coach)
-                .FirstOrDefaultAsync(m => m.CoachId == CoachId);
-            // redirect to no profile page if the coach has not created a profile yet
-            if (coachProfile == null)
-            {     
-                return RedirectToAction("NoProfile");
+            CoachProfile coachProfile = new CoachProfile();
+
+            if (User.IsInRole("Coach"))
+            {
+
+                // show the profile of the coach that currently logged in  
+                var CoachId = _userManager.GetUserId(User);
+
+                coachProfile = await _context.CoachProfiles
+                    .Include(c => c.Coach)
+                    .FirstOrDefaultAsync(m => m.CoachId == CoachId);
+                // redirect to no profile page if the coach has not created a profile yet
+                if (coachProfile == null)
+                {
+                    return RedirectToAction("NoProfile");
+                }
+
             }
+            // if the current usr is a member, find the profile by ID passed in as a parameter
+            else if (User.IsInRole("Member"))
+            {
+
+                coachProfile = await _context.CoachProfiles
+                           .Include(c => c.Coach)
+                           .FirstOrDefaultAsync(m => m.CoachProfileId == id);
+
+                //Console.WriteLine("id type: " + id.GetType().Name)
+
+
+                //if(_userManager.FindByIdAsync(id).Result != null)
+                //{
+                //    var CoachId = id;
+
+                //    coachProfile = await _context.CoachProfiles
+                //        .Include(c => c.Coach)
+                //        .FirstOrDefaultAsync(m => m.CoachId == CoachId);
+
+                //}
+                //else
+                //{
+                //    coachProfile = await _context.CoachProfiles
+                //           .Include(c => c.Coach)
+                //           .FirstOrDefaultAsync(m => m.CoachProfileId == id);
+
+                //}
+        
+                
+
+            }
+           
+           
 
             return View(coachProfile);
         }
 
+        
+       
         public IActionResult NoProfile() 
         {
 
             return View();
         }
+
+        
+
+
 
         // GET: CoachProfile/Create
         public IActionResult Create()
@@ -116,7 +163,7 @@ namespace InhouseMembership.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CoachProfileId,CoachId,Education,Interests,Experience,Skills,Biography,ImagePath")] CoachProfile coachProfile)
+        public async Task<IActionResult> Edit(int id, [Bind("CoachProfileId,CoachId,Education,Interests,Experience,Skills,Biography,ImageFile")] CoachProfile coachProfile)
         {
 
             coachProfile.CoachId = _userManager.GetUserId(User);
@@ -124,6 +171,19 @@ namespace InhouseMembership.Controllers
             {
                 return NotFound();
             }
+
+            // upload image to wwwroot/image
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(coachProfile.ImageFile.FileName);
+            string extension = Path.GetExtension(coachProfile.ImageFile.FileName);
+            coachProfile.ImagePath = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            string path = Path.Combine(wwwRootPath + "/image/", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await coachProfile.ImageFile.CopyToAsync(fileStream);
+
+            }
+
 
             if (ModelState.IsValid)
             {

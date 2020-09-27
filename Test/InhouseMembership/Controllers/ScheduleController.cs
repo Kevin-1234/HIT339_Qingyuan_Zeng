@@ -92,15 +92,27 @@ namespace InhouseMembership.Controllers
             return View(schedule);
         }
 
-        // redirect to the coach detail page
-        public IActionResult CoachDetails(string id)
+        // redirect to the coach profile page
+        public IActionResult CoachProfile(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            // get the coach profile id based on the coach id passed in the function
+            CoachProfile coachProfile = _context.CoachProfiles.Where(p => p.CoachId == id).FirstOrDefault();
+
+            if (coachProfile == null)
+            {
+
+                return RedirectToAction("NoProfile", "CoachProfile");
+
+            }
+            var profileId = coachProfile.CoachProfileId;
            
-            return Redirect("../../Coach/Details/" + id);
+           
+            // redirect to the profile page using the profile id
+            return Redirect("../../CoachProfile/Details/" + profileId);
         }
 
 

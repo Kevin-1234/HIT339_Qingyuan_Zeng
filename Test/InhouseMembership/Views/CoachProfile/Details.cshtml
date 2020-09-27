@@ -56,7 +56,13 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CoachProfileId">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.CoachProfileId">Delete</a>
-</div>
+@if (User.IsInRole("Coach"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.CoachProfileId">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@Model.CoachProfileId">Delete</a>
+    </div>
+
+}
+
+

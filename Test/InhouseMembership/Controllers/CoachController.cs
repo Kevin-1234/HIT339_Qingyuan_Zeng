@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InhouseMembership.Data;
 using InhouseMembership.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,8 @@ namespace InhouseMembership.Controllers
 
     {
         UserManager<ApplicationUser> _userManager;
-        public CoachController(UserManager<ApplicationUser> userManager)
+        private readonly ApplicationDbContext _context;
+        public CoachController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
         }
@@ -29,6 +31,20 @@ namespace InhouseMembership.Controllers
             return View(coaches);
             
         }
+
+        // get the selected cocach's profile 
+        //public ActionResult GetCoachProfiles()
+        //{
+            
+        //    // get the profile based on coach Id
+        //    //CoachProfile coachProfile = new CoachProfile();
+
+        //    //coachProfile = _context.CoachProfiles.Where(p => p.CoachId == id).FirstOrDefault();
+
+
+        //    return RedirectToAction("Index", "CoachProfile");
+
+        //}
 
         public async Task<IActionResult> Details(string id)
         {

@@ -27,23 +27,20 @@
                         {
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Schedules</a>
                             </li>
 
-
-
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admins</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="GetAdmins">Admins</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Coach" asp-action="Index">Coachs</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="GetCoaches">Coaches</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="Index">Members</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="GetMembers">Members</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Enrollment" asp-action="Index">Enrollments</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
@@ -51,9 +48,7 @@
                         }
                         else if (User.IsInRole("Coach"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
+
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CoachProfile" asp-action="Details">My Profile</a>
@@ -67,18 +62,16 @@
                             </li>
 
                         }
-                        else
+                        else if (User.IsInRole("Member"))
                         {
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
+
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Coach" asp-action="Index">Coach</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CoachProfile" asp-action="Index">Coache Profiles</a>
                             </li>
 
                         }

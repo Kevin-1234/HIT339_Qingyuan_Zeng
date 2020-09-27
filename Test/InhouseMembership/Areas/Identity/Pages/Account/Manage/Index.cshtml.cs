@@ -40,6 +40,7 @@ namespace InhouseMembership.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(ApplicationUser user)
         {
+            Console.WriteLine("LoadAsync");
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
@@ -51,8 +52,11 @@ namespace InhouseMembership.Areas.Identity.Pages.Account.Manage
             };
         }
 
+      
+
         public async Task<IActionResult> OnGetAsync()
         {
+            Console.WriteLine("OnGetAsync");
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -63,8 +67,11 @@ namespace InhouseMembership.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+
+
         public async Task<IActionResult> OnPostAsync()
         {
+            Console.WriteLine("OnPostAsync");
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
